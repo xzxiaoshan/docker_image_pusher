@@ -167,8 +167,16 @@ jobs:
                fi
             fi
             
+            
             # 将@sha256:等字符删除
             image_name_tag="${image_name_tag%%@*}"
+            
+            # 检查别名并替换 image_name_tag
+            alias=$(echo "$line" | awk -F'--alias[ =]' '{if (NF>1) print $2}' | awk '{print $1}')
+            if [ -n "$alias" ]; then
+              image_name_tag="${alias}:${image_tag}"
+            fi
+            
             new_image="$ALIYUN_REGISTRY/$ALIYUN_NAME_SPACE/$platform_prefix$name_space_prefix$image_name_tag"
             echo "docker tag $image $new_image"
             docker tag $image $new_image
