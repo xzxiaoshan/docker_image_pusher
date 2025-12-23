@@ -10,3 +10,6 @@ xhofe/alist:latest
 --platform=linux/arm64 xiaoyaliu/alist
 alpine:3.21.3
 easysoft/zentao:21.5
+
+kuschzzp/libreoffice:7.3.6
+kuschzzp/openoffice:4.1.13
